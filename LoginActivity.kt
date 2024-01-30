@@ -27,13 +27,19 @@ class LoginActivity : AppCompatActivity() {
             }
 
             else{
-                val user = UserOperation(this)
-                if (user.login(username.text.toString().trim(),password.text.toString().trim())){
+                val userOperation= UserOperation(this)
+
+                var cursor = userOperation.login(username.text.toString().trim(),password.text.toString().trim())
+
+                if (cursor.moveToFirst()){
+                    var user1 =  cursor.getString(1)
+                    var pass1 =  cursor.getString(2)
 
                     var i = Intent(this, ShowActivity::class.java)
-                    startActivity(i)
+                   i.putExtra("user1", user1)
+                   i.putExtra("pass1", pass1)
 
-                    Toast.makeText(this, "user logged", Toast.LENGTH_SHORT).show()
+                    startActivity(i)
                 }else
                     Toast.makeText(this, "username or password is wrong", Toast.LENGTH_SHORT).show()
             }

@@ -10,6 +10,8 @@ import android.widget.Toast
 
 class ShowActivity : AppCompatActivity() {
     lateinit var show: TextView
+    lateinit var user1: String
+    lateinit var pass1: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,11 +20,26 @@ class ShowActivity : AppCompatActivity() {
         val search = findViewById<Button>(R.id.search)
 
         show = findViewById<TextView>(R.id.show)
+        val uid = findViewById<TextView>(R.id.uid)
         val name = findViewById<TextView>(R.id.name)
         val pass = findViewById<TextView>(R.id.pass)
         val username = findViewById<EditText>(R.id.username)
 
+        user1 = intent.getStringExtra("user1").toString()
+        pass1 = intent.getStringExtra("pass1").toString()
+
         val userOperation = UserOperation(this)
+
+        var cursor1 = userOperation.login(user1, pass1)
+
+        if(cursor1.moveToFirst()){
+            uid.setText(cursor1.getString(0)).toString()
+            name.setText(cursor1.getString(1))
+            pass.setText(cursor1.getString(2))
+        }
+
+
+
         val data = userOperation.readAllData()
 
         showAllData(data)
@@ -36,6 +53,7 @@ class ShowActivity : AppCompatActivity() {
         search.setOnClickListener{
             val cursor = userOperation.searchUser(username.text.toString().trim())
             if(cursor.moveToFirst()){
+                uid.setText(cursor.getString(0)).toString()
                 name.setText(cursor.getString(1))
                 pass.setText(cursor.getString(2))
             }else{

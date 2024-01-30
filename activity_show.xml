@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/uid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -47,7 +47,19 @@
             android:textSize="20dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:text="UId" />
+        <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
         <TextView
             android:id="@+id/pass"
             android:layout_width="wrap_content"
@@ -86,7 +98,7 @@
             android:textSize="20dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Username" />
+            android:hint="Username" />
 
         <Button
             android:id="@+id/search"

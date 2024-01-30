@@ -34,7 +34,7 @@ class UserOperation(context: Context) : SQLiteOpenHelper(context, "myDb", null, 
         return (Integer.parseInt("$success") != -1)
     }
 
-    fun login(username: String, password: String): Boolean {
+    fun login1(username: String, password: String): Boolean {
         val db = this.readableDatabase
         val cols = arrayOf(ID_COL, USER_COL, PASS_COL)
         val selections = "$USER_COL=? AND $PASS_COL=?"
@@ -45,6 +45,15 @@ class UserOperation(context: Context) : SQLiteOpenHelper(context, "myDb", null, 
         return count != 0
     }
 
+    fun login(username: String, password: String): Cursor {
+        val db = this.readableDatabase
+        val cols = arrayOf(ID_COL, USER_COL, PASS_COL)
+        val selections = "$USER_COL=? AND $PASS_COL=?"
+        val args = arrayOf(username, password)
+        // cursor
+        val cursor = db.query(TABLE_NAME, cols, selections, args, null, null, null)
+       return  cursor
+    }
     fun searchUser(username: String): Cursor {
         val db = this.readableDatabase
         val cols = arrayOf(ID_COL, USER_COL, PASS_COL)
