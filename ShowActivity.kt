@@ -18,6 +18,7 @@ class ShowActivity : AppCompatActivity() {
         setContentView(R.layout.activity_show)
         val logout = findViewById<Button>(R.id.logout)
         val search = findViewById<Button>(R.id.search)
+        val update = findViewById<Button>(R.id.update)
 
         show = findViewById<TextView>(R.id.show)
         val uid = findViewById<TextView>(R.id.uid)
@@ -59,6 +60,13 @@ class ShowActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "No data", Toast.LENGTH_LONG).show()
             }
+        }
+
+        update.setOnClickListener {
+            var i = Intent(this, UpdateActivity::class.java)
+            i.putExtra("user1", user1)
+            i.putExtra("pass1", pass1)
+            startActivity(i)
         }
 
         logout.setOnClickListener {

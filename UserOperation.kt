@@ -64,7 +64,7 @@ class UserOperation(context: Context) : SQLiteOpenHelper(context, "myDb", null, 
         return cursor
     }
 
-    fun update(id: Int, username: String?, password: String?): Int {
+    fun updateUser(id: Int, username: String?, password: String?): Int {
         var db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(USER_COL, username)
